@@ -3,7 +3,7 @@
 ### Scripts and files used in:
 
 Adam Dziulko, Holly Allen, Edward B. Chuong (2024) "An endogenous retrovirus regulates tumor-specific expression of the immune transcriptional regulator SP140".
-DOI: 10.1093/hmg/ddae084
+DOI: [10.1093/hmg/ddae084](https://academic.oup.com/hmg/advance-article/doi/10.1093/hmg/ddae084/7673981)
 
 ### GEO:
 High-throughput sequencing data (RNA-seq and CUT&RUN) have been deposited in the Gene Expression Omnibus (GEO) with the accession code GSE256012.
