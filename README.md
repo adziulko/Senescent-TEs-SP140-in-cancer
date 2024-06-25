@@ -6,7 +6,7 @@ Adam Dziulko, Holly Allen, Edward B. Chuong (2024) "An endogenous retrovirus reg
 DOI: [10.1093/hmg/ddae084](https://academic.oup.com/hmg/advance-article/doi/10.1093/hmg/ddae084/7673981)
 
 ### GEO:
-High-throughput sequencing data (RNA-seq and CUT&RUN) have been deposited in the Gene Expression Omnibus (GEO) with the accession code GSE256012.
+High-throughput sequencing data (RNA-seq and CUT&RUN) have been deposited in the Gene Expression Omnibus (GEO) with the accession code [GSE256012](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE256012)
 
 ### Programs used:
 - GIGGLE v0.6.3 (https://github.com/ryanlayer/giggle)
