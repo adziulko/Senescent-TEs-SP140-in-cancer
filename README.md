@@ -58,14 +58,3 @@ These scripts are designed to work on CU Boulder's computing system, Fiji, which
 Started with [Chip-seq](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE74238) & [RNA-seq](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE74324) fastq files from OIS IMR90 cells (from Tasdemir et al [(BRD4 connects enhancer remodeling to senescence immune surveillance)](https://aacrjournals.org/cancerdiscovery/article/6/6/612/5661/BRD4-Connects-Enhancer-Remodeling-to-Senescence)):
 
 
-**RNAseq Workflow (for dataset #1):**
-1) Trim adapters on raw fastq files using BBDuk
-    - [a1_bbduk_array_PE.sbatch](RNA-seq/a1_bbduk_array_PE.sbatch)
-2) Take trimmed fastq files and run through Salmon to quantify the expression of transcripts
-    - [b1_salmon_PE.sbatch](RNA-seq/b1_salmon_PE.sbatch)
-3) Input Salmon quantification files into R, then run DeSeq2 for differential expression (tximport version to convert transcripts to gene level) 
-   - [tximport_DESeq2_kristen_cleanedup.R](R-code/tximport_DESeq2_kristen_cleanedup.R)
-4) Take trimmed fastq files and run through HISAT2 to map reads to mm10 genome (used mm10 instead of mm39 since there are downstream analysis tools developed for mm10)
-    - [c1_hisat2_PE_RNA_TEtran_q10SB_unstrand_mm10.sbatch](RNA-seq/c1_hisat2_PE_RNA_TEtran_q10SB_unstrand_mm10.sbatch)
-5) Take BAM files from HISAT2 output and convert to bigwig file (compresses the file/map and makes a more readable format to look at genome map on UCSC genome browser)
-   - [d1_deeptools_bam_to_bigwig_mm10_unstranded.sbatch](RNA-seq/d1_deeptools_bam_to_bigwig_mm10_unstranded.sbatch)
