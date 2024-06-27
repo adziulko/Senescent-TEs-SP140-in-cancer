@@ -14,6 +14,7 @@ High-throughput sequencing data (RNA-seq and CUT&RUN) have been deposited in the
 - deepTools v3.0.1 (https://deeptools.readthedocs.io/en/develop/index.html)
 - samtools v1.16.1 (http://www.htslib.org/)
 - BBDuk/BBMap v38.05 (https://jgi.doe.gov/data-and-tools/bbtools/)
+- Trimmomatic v0.36 (http://www.usadellab.org/cms/?page=trimmomatic)
 - hisat2 v2.1.0 (https://github.com/DaehwanKimLab/hisat2)
 - subread/featureCounts v1.6.2 (http://subread.sourceforge.net/)
 - TEtranscripts v2.1.4 (https://github.com/mhammell-laboratory/TEtranscripts)
@@ -57,4 +58,16 @@ These scripts are designed to work on CU Boulder's computing system, Fiji, which
 ## Overrepresented transposable element (TE) families in Oncogene Induced Senescent (OIS) cells
 Started with [Chip-seq](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE74238) & [RNA-seq](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE74324) fastq files from OIS IMR90 cells (from Tasdemir et al [(BRD4 connects enhancer remodeling to senescence immune surveillance)](https://aacrjournals.org/cancerdiscovery/article/6/6/612/5661/BRD4-Connects-Enhancer-Remodeling-to-Senescence)):
 
-
+**ChIP-seq Workflow:**
+1) Download fastq files from GEO
+    - [a_sraDownload_multi_adam.sbatch](BRD4_RNA&CHIP-seq/a_sraDownload_multi_adam.sbatch)
+2)  Trim adapters on raw fastq files using trimmomatic
+    - [b_trimmomatic_multi_SE.sbatch](BRD4_RNA&CHIP-seq/b_trimmomatic_multi_SE.sbatch)
+3) Take trimmed fastq files and run through BWA-MEM to map reads to mm10 genome 
+    - [c_bwaMem_SE.sbatch](BRD4_RNA&CHIP-seq/c_bwaMem_SE.sbatch)
+4) Take BAM files from BWA-MEM output and convert to peak files using MACS2
+   - [d_macs2_multi_adam.sbatch](BRD4_RNA&CHIP-seq/d_macs2_multi_adam.sbatch)
+5) Take peak files from MACS2 output and run through colacalization analysis (GIGGLE) to output list of overrepresented TEs in OIS
+   - [e_giggle.sbatch](BRD4_RNA&CHIP-seq/e_giggle.sbatch)
+6) Input TE giggle results into R, then make volcano plot
+   - [chip_deseq.R]
