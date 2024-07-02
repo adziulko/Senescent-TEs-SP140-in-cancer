@@ -63,7 +63,7 @@ Started with [Chip-seq](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE74
     - [a_sraDownload_multi_adam.sbatch](BRD4_RNA&CHIP-seq/a_sraDownload_multi_adam.sbatch)
 2)  Trim adapters on raw fastq files using trimmomatic
     - [b_trimmomatic_multi_SE.sbatch](BRD4_RNA&CHIP-seq/b_trimmomatic_multi_SE.sbatch)
-3) Take trimmed fastq files and run through BWA-MEM to map reads to mm10 genome 
+3) Take trimmed fastq files and run through BWA-MEM to map reads to hg38 genome 
     - [c_bwaMem_SE.sbatch](BRD4_RNA&CHIP-seq/c_bwaMem_SE.sbatch)
 4) Take BAM files from BWA-MEM output and convert to peak files using MACS2
    - [d_macs2_multi_adam.sbatch](BRD4_RNA&CHIP-seq/d_macs2_multi_adam.sbatch)
@@ -74,3 +74,18 @@ Started with [Chip-seq](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE74
   
 ## OIS specific TE loci within enhancer acting distance (~150kb) of differentially regulated genes
 Started with OIS TE list from above & [RNA-seq](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE74324) fastq files from OIS IMR90 cells (from Tasdemir et al [(BRD4 connects enhancer remodeling to senescence immune surveillance)](https://aacrjournals.org/cancerdiscovery/article/6/6/612/5661/BRD4-Connects-Enhancer-Remodeling-to-Senescence)):
+
+**RNA-seq Workflow:**
+1) Download fastq files from GEO
+    - [m_sraDownload_multi_rna_adam.sbatch](BRD4_RNA&CHIP-seq/m_sraDownload_multi_rna_adam.sbatch)
+2)  Trim adapters on raw fastq files using trimmomatic
+    - [n_trimmomatic_multi_PE.sbatch](BRD4_RNA&CHIP-seq/n_trimmomatic_multi_PE.sbatch)
+3) Take trimmed fastq files and run through STAR to map reads to hg38 genome 
+    - [o_STAR_map.sbatch](BRD4_RNA&CHIP-seq/o_STAR_map.sbatch)
+4) Take BAM files from STAR output and convert to bigwig file (compresses the file/map and makes a more readable format to look at genome map on UCSC genome browser)
+   - [u_deeptools_bam_to_bigwig.sbatch](BRD4_RNA&CHIP-seq/u_deeptools_bam_to_bigwig.sbatch)
+5) Take trimmed fastq files and run through Salmon to quantify the expression of transcripts
+    - [q_salmon_PE.sbatch](BRD4_RNA&CHIP-seq/q_salmon_PE.sbatch)
+6) Input Salmon quantification files into R, then run DeSeq2 for differential expression (tximport version to convert transcripts to gene level) 
+    - [rna_deseq.R]
+7) 
