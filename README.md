@@ -55,8 +55,8 @@ This repository contains scripts for the following dataset types:
 
 These scripts are designed to work on CU Boulder's computing system, Fiji, which uses Slurm as a resource manager and job scheduler.
 
-## Overrepresented transposable element (TE) families in Oncogene Induced Senescent (OIS) cells
-Started with [Chip-seq](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE74238) & [RNA-seq](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE74324) fastq files from OIS IMR90 cells (from Tasdemir et al [(BRD4 connects enhancer remodeling to senescence immune surveillance)](https://aacrjournals.org/cancerdiscovery/article/6/6/612/5661/BRD4-Connects-Enhancer-Remodeling-to-Senescence)):
+## Overrepresented transposable element (TE) families that overlap with H3K27ac mark in Oncogene Induced Senescent (OIS) cells
+Started with [Chip-seq](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE74238) (H3K27ac - active enhancers and transcription) fastq files from OIS IMR90 cells (from Tasdemir et al [(BRD4 connects enhancer remodeling to senescence immune surveillance)](https://aacrjournals.org/cancerdiscovery/article/6/6/612/5661/BRD4-Connects-Enhancer-Remodeling-to-Senescence)):
 
 **ChIP-seq Workflow:**
 1) Download fastq files from GEO
@@ -67,7 +67,10 @@ Started with [Chip-seq](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE74
     - [c_bwaMem_SE.sbatch](BRD4_RNA&CHIP-seq/c_bwaMem_SE.sbatch)
 4) Take BAM files from BWA-MEM output and convert to peak files using MACS2
    - [d_macs2_multi_adam.sbatch](BRD4_RNA&CHIP-seq/d_macs2_multi_adam.sbatch)
-5) Take peak files from MACS2 output and run through colacalization analysis (GIGGLE) to output list of overrepresented TEs in OIS
+5) Take peak files from MACS2 output and run through colacalization analysis (GIGGLE) to output list of overrepresented TEs that overlap with H3K27ac in OIS
    - [e_giggle.sbatch](BRD4_RNA&CHIP-seq/e_giggle.sbatch)
 6) Input TE giggle results into R, then make volcano plot
    - [chip_deseq.R]
+  
+## OIS specific TE loci within enhancer acting distance (~150kb) of differentially regulated genes
+Started with OIS TE list from above & [RNA-seq](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE74324) fastq files from OIS IMR90 cells (from Tasdemir et al [(BRD4 connects enhancer remodeling to senescence immune surveillance)](https://aacrjournals.org/cancerdiscovery/article/6/6/612/5661/BRD4-Connects-Enhancer-Remodeling-to-Senescence)):
