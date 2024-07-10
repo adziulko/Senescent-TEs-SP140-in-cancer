@@ -87,5 +87,4 @@ Started with OIS TE list from above & [RNA-seq](https://www.ncbi.nlm.nih.gov/geo
 5) Take trimmed fastq files and run through Salmon to quantify the expression of transcripts
     - [q_salmon_PE.sbatch](BRD4_RNA&CHIP-seq/q_salmon_PE.sbatch)
 6) Input Salmon quantification files into R, then run DeSeq2 for differential expression (tximport version to convert transcripts to gene level) 
-    - [rna_deseq.R]
-7) 
+    - [DESeq2_c_BRD4_salmon_rna_cleanedup.R](BRD4_RNA&CHIP-seq/DESeq2_c_BRD4_salmon_rna_cleanedup.R)
